@@ -1,0 +1,161 @@
+﻿<Window x:Class="IDZ_CLIENT.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:local="clr-namespace:IDZ_CLIENT"
+        
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+        
+        mc:Ignorable="d"
+        Title="MainWindow" Height="545" Width="842">
+
+    <Window.Resources>
+
+        <col:ArrayList x:Key="List">
+            <sys:String>Железная кальчуга</sys:String>
+            <sys:String>Кожанная кальчуга</sys:String>
+            <sys:String>Еще хуйня какая-нибудь</sys:String>
+        </col:ArrayList>
+        
+        <Style TargetType="Border">
+            <Setter Property="CornerRadius" Value="5"/>
+        </Style>
+
+        <Style TargetType="StackPanel">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+
+        <Style x:Key="ButtonStackPanel" TargetType="StackPanel">
+            <Setter Property="Width" Value="37"/>
+            <Setter Property="Height" Value="37"/>
+        </Style>
+        <Style TargetType="svgc:SvgViewbox">
+            <Setter Property="Stretch" Value="None"/>
+        </Style>
+        <Style x:Key="FooterButton" TargetType="Button">
+            <Setter Property="Width" Value="55"/>
+            <Setter Property="Height" Value="55"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="./Fonts/#Alegreya"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style TargetType="ListBoxItem">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderThickness" Value="0"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <local:UriToBitmapImageConverter x:Key="UriConverter"/>
+        
+    </Window.Resources>
+    <Grid Background="#EBEEF2">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="65*"/>
+            <RowDefinition Height="20*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Background="#56778C" Grid.ColumnSpan="3">
+            <TextBlock Foreground="#EBEEF2" TextAlignment="Center" VerticalAlignment="Center" Text="TES 5: SKYRIM ARMOR" FontSize="24" FontFamily="./Fonts/#Bayon"/>
+        </Grid>
+        <Grid Grid.Row="2" HorizontalAlignment="Center" Margin="17px">
+            <Border Background="#56778C">
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="#F88B8B" Margin="10">
+                        <Button Style="{StaticResource FooterButton}">
+                            <StackPanel Style="{StaticResource ButtonStackPanel}">
+                                <svgc:SvgViewbox Source="/Images/trash.svg"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+                    <Border Background="#7CC783" Margin="10">
+                        <Button Style="{StaticResource FooterButton}">
+                            <StackPanel Style="{StaticResource ButtonStackPanel}">
+                                <svgc:SvgViewbox Source="/Images/plus.svg"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+                    <Border Background="#93C3E1" Margin="10">
+                        <Button Style="{StaticResource FooterButton}">
+                            <StackPanel Style="{StaticResource ButtonStackPanel}">
+                                <svgc:SvgViewbox Source="/Images/update.svg"/>
+                            </StackPanel>
+                        </Button>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </Grid>
+        <Grid Grid.Row="1" Margin="50 20 50 0">
+            <ListBox BorderThickness="0" Background="Transparent" ItemsSource="{StaticResource List}" HorizontalContentAlignment="Stretch">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Background="#315259" Margin="0 5 0 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="15*"/>
+                                <ColumnDefinition Width="45*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="12*"/>
+                                <ColumnDefinition Width="10*"/>
+                                <ColumnDefinition Width="8*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Image Source="/Images/image.jpg" Height="70"/>
+
+                            <TextBox Grid.RowSpan="2" Grid.Column="1" Text="sdfsdfsdfsdf" IsReadOnly="True" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                            <Border Grid.Column="2" BorderThickness="3 0 0 0" BorderBrush="#56778C">
+                                <StackPanel  Margin="10">
+                                    <Border Width="50" Height="51"  Grid.Row="0">
+                                        <svgc:SvgViewbox Source="/Images/defense.svg" Stretch="None"/>
+                                    </Border>
+                                    <TextBox Grid.Row="1" Text="32" IsReadOnly="true" HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="3" BorderThickness="3 0 0 0" BorderBrush="#56778C">
+                                <StackPanel Margin="10" >
+                                    <Border Width="51" Height="51" Grid.Row="0">
+                                        <svgc:SvgViewbox Source="/Images/coins.svg" Stretch="None"/>
+                                    </Border>
+                                    <TextBox Text="200" IsReadOnly="True" HorizontalAlignment="Center" Grid.Row="1"/>
+                                </StackPanel>
+                            </Border>
+                            <Border Grid.Column="4" BorderThickness="3 0 0 0" BorderBrush="#56778C">
+                                <StackPanel Margin="10" >
+                                    <Border Width="51" Height="51" Grid.Row="0">
+                                        <svgc:SvgViewbox Source="/Images/weight.svg" Stretch="None"/>
+                                    </Border>
+                                    <TextBox Text="3" IsReadOnly="true" HorizontalAlignment="Center" Grid.Row="1"/>
+                                </StackPanel>
+                            </Border>
+                            <Button Grid.Column="5" BorderBrush="#56778C" BorderThickness="3 0 0 0" Background="Transparent">
+                                <Border Grid.RowSpan="2">
+                                    <svgc:SvgViewbox Source="/Images/pencil.svg" Stretch="None"/>
+                                </Border>
+                            </Button>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+            <!--<Image Grid.Column="0" Source="{Binding ImageSource, 
+                    Converter={StaticResource UriConverter}, FallbackValue='./Images/image.jpg>'}"/>-->
+        </Grid>
+    </Grid>
+</Window>
