@@ -27,7 +27,8 @@ namespace IDZ_CLIENT
     { 
         public MainWindow()
         {
-            DataContext = new ViewModel();
+            //Thread.Sleep(10000);
+            this.DataContext = new ViewModels.MainWindowViewModel();
             InitializeComponent();
         }
 
@@ -35,5 +36,6 @@ namespace IDZ_CLIENT
         {
 
         }
+
     }
 }

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
@@ -19,13 +20,17 @@ namespace IDZ_CLIENT
                 CreateOptions = BitmapCreateOptions.DelayCreation
             };
             b.BeginInit();
+            if(value == null)
+            {
+                return DependencyProperty.UnsetValue;
+            }
             b.UriSource = new Uri((string)value);
             b.EndInit();
             return b;
         }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            return new NotImplementedException();
         }
     }
 }
