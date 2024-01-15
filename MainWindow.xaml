@@ -10,7 +10,7 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         
         mc:Ignorable="d"
-        Title="MainWindow" Height="545" Width="842">
+        Title="MainWindow" Height="600" Width="880">
 
     <Window.Resources>
         <Style TargetType="Border">
@@ -52,7 +52,55 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
+        
+        <ControlTemplate x:Key="BtnTemplate" TargetType="Button">
+            <Border x:Name="btnBorder" Background="{TemplateBinding Background}" 
+                    Margin="10"
+                    CornerRadius="5"
+                    Width="55" Height="55">
+                <StackPanel Width="37" Height="37">
+                    <ContentPresenter x:Name="img"/>
+                </StackPanel>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation 
+                                    Storyboard.TargetName="btnBorder"
+                                    Storyboard.TargetProperty="(Background).(SolidColorBrush.Color)"
+                                    To="White"
+                                    Duration="0:0:0.5"
+                                    AutoReverse="True"
+                                    RepeatBehavior="1x"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+                <EventTrigger RoutedEvent="Button.Click" >
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetName="img"
+                                    Storyboard.TargetProperty="Opacity"
+                                    To="0.7"
+                                    Duration="0:0:0.2"
+                                    AutoReverse="True"
+                                    RepeatBehavior="1x"
+                                    />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter TargetName="img" Property="Opacity" Value="0.7"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        
         <local:UriToBitmapImageConverter x:Key="UriConverter"/>
         
     </Window.Resources>
@@ -68,27 +116,21 @@
         <Grid Grid.Row="2" HorizontalAlignment="Center" Margin="17px">
             <Border Background="#56778C">
                 <StackPanel Orientation="Horizontal">
-                    <Border Background="#F88B8B" Margin="10">
-                        <Button Style="{StaticResource FooterButton}" Command="{Binding DeleteCommand}">
-                            <StackPanel Style="{StaticResource ButtonStackPanel}">
-                                <svgc:SvgViewbox Source="/Images/trash.svg"/>
-                            </StackPanel>
-                        </Button>
-                    </Border>
-                    <Border Background="#93C3E1" Margin="10">
-                        <Button Style="{StaticResource FooterButton}" Command="{Binding UpdateCommand}">
-                            <StackPanel Style="{StaticResource ButtonStackPanel}">
-                                <svgc:SvgViewbox Source="/Images/update.svg"/>
-                            </StackPanel>
-                        </Button>
-                    </Border>
-                    <Border Background="#FBE27B" Margin="10">
-                        <Button Style="{StaticResource FooterButton}" Command="{Binding EditCommand}">
-                            <StackPanel Style="{StaticResource ButtonStackPanel}">
-                                <svgc:SvgViewbox Source="/Images/pencil.svg"/>
-                            </StackPanel>
-                        </Button>
-                    </Border>
+                    <Button Template="{StaticResource BtnTemplate}" 
+                            Background="#F88B8B"
+                            Command="{Binding DeleteCommand}">
+                        <svgc:SvgViewbox Source="/Images/trash.svg"/>
+                    </Button>
+                    <Button Template="{StaticResource BtnTemplate}" 
+                            Background="#93C3E1"
+                            Command="{Binding UpdateCommand}">
+                        <svgc:SvgViewbox Source="/Images/update.svg"/>
+                    </Button>
+                    <Button Template="{StaticResource BtnTemplate}" 
+                            Background="#FBE27B"
+                            Command="{Binding EditCommand}">
+                        <svgc:SvgViewbox Source="/Images/pencil.svg"/>
+                    </Button>
                 </StackPanel>
             </Border>
         </Grid>
