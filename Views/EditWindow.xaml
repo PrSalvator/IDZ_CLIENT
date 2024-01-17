@@ -31,7 +31,7 @@
                         HorizontalAlignment="Center" VerticalAlignment="Center" 
                              FontFamily="/Fonts/#Alegreya" FontSize="24"
                              TextWrapping="Wrap"
-                             Text="{Binding NAME, UpdateSourceTrigger=PropertyChanged}"/>
+                             Text="{Binding NAME, UpdateSourceTrigger=LostFocus}"/>
                 </Border>
             </DockPanel>
         </Grid>
@@ -57,7 +57,7 @@
                     <TextBox BorderThickness="0" Background="Transparent"
                         HorizontalAlignment="Center" VerticalAlignment="Center" 
                              FontFamily="/Fonts/#Alegreya" FontSize="24"
-                             Text="{Binding WEIGHT}"/>
+                             Text="{Binding WEIGHT, UpdateSourceTrigger=PropertyChanged}"/>
                 </Border>
             </DockPanel>
         </Grid>
@@ -70,7 +70,7 @@
                     <TextBox BorderThickness="0" Background="Transparent"
                              HorizontalAlignment="Center" VerticalAlignment="Center" 
                              FontFamily="/Fonts/#Alegreya" FontSize="24"
-                             Text="{Binding PRICE}"/>
+                             Text="{Binding PRICE, UpdateSourceTrigger=PropertyChanged}"/>
                 </Border>
             </DockPanel>
         </Grid>

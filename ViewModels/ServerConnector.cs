@@ -11,12 +11,19 @@ namespace IDZ_CLIENT.ViewModels
 {
     class ServerConnector
     {
-        private IPAddress localAddress = IPAddress.Parse(ConfigurationManager.AppSettings.Get("LocalAddress"));
-        private int localPort = int.Parse(ConfigurationManager.AppSettings.Get("LocalPort"));
-        private int remotePortRead = int.Parse(ConfigurationManager.AppSettings.Get("RemotePortRead"));
-        private int remotePortEdit = int.Parse(ConfigurationManager.AppSettings.Get("RemotePortEdit"));
-        private int remotePortDelete = int.Parse(ConfigurationManager.AppSettings.Get("RemotePortDelete"));
-        private int remotePortUpdate = int.Parse(ConfigurationManager.AppSettings.Get("RemotePortUpdate"));
+        private readonly IPAddress localAddress = IPAddress.Parse(ConfigurationManager.AppSettings.Get("LocalAddress"));
+        private readonly int localPort = int.Parse(ConfigurationManager.AppSettings.Get("LocalPort"));
+        private readonly int remotePortRead = int.Parse(ConfigurationManager.AppSettings.Get("RemotePortRead"));
+        private readonly int remotePortEdit = int.Parse(ConfigurationManager.AppSettings.Get("RemotePortEdit"));
+        private readonly int remotePortDelete = int.Parse(ConfigurationManager.AppSettings.Get("RemotePortDelete"));
+        private readonly int remotePortUpdate = int.Parse(ConfigurationManager.AppSettings.Get("RemotePortUpdate"));
+        private readonly int remotePortReport = int.Parse(ConfigurationManager.AppSettings.Get("RemotePortReport"));
+        public string GetDataForReport()
+        {
+            SendMessage(remotePortReport);
+            string answer = ReceiveDataFromServer();
+            return answer;
+        }
 
         public string GetDataFromServer()
         {

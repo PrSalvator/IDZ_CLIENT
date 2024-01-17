@@ -27,15 +27,8 @@ namespace IDZ_CLIENT
     { 
         public MainWindow()
         {
-            //Thread.Sleep(10000);
             this.DataContext = new ViewModels.MainWindowViewModel();
             InitializeComponent();
         }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
     }
 }
